@@ -1,0 +1,11 @@
+{
+    "name": "disappearing-policies",
+    "devDependencies": {
+        "@types/node": "^10.17.54"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^3.25.1",
+        "@pulumi/awsx": "^0.24.0",
+        "@pulumi/pulumi": "^2.0.0"
+    }
+}
