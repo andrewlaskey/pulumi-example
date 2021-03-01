@@ -1,34 +1,34 @@
-import { LocalWorkspace, OutputMap } from '@pulumi/pulumi/x/automation';
-import path from 'path';
+import { LocalWorkspace, OutputMap } from "@pulumi/pulumi/x/automation";
+import path from "path";
 
 const cwd = process.cwd();
 
 /**
  * The path to the root directory of the project
  */
-const rootPath = cwd.includes('child-infra') ? path.resolve(cwd, '../') : cwd;
+const rootPath = cwd.includes("child-infra") ? path.resolve(cwd, "../") : cwd;
 
 /**
  * The path to the child tests in this project
  */
 const childPath = `${rootPath}/child-infra`;
-const childStack = `development-child-stack`;
+const childStack = `child-stack`;
 
 async function deploy(): Promise<OutputMap> {
   const stackArgs = {
     stackName: childStack,
-    workDir: childPath
+    workDir: childPath,
   };
 
   console.info(`Initializing stack: ${stackArgs.stackName}`);
   const stack = await LocalWorkspace.createOrSelectStack(stackArgs);
-  await stack.workspace.installPlugin('aws', 'v3.6.1');
-  await stack.setConfig('aws:region', { value: 'us-east-2' });
+  await stack.workspace.installPlugin("aws", "v3.6.1");
+  await stack.setConfig("aws:region", { value: "us-east-2" });
   await stack.refresh({ onOutput: console.info });
 
-  console.info('Updating stack...');
+  console.info("Updating stack...");
   const up = await stack.up({ onOutput: console.info });
-  console.info('Finished updating.');
+  console.info("Finished updating.");
   return up.outputs;
 }
 
@@ -42,7 +42,7 @@ async function destroy(): Promise<void> {
   try {
     const stackArgs = {
       stackName: childStack,
-      workDir: childPath
+      workDir: childPath,
     };
 
     console.info(`Destroying stack: ${stackArgs.stackName}`);
@@ -53,7 +53,7 @@ async function destroy(): Promise<void> {
     // to pass an argument that is unrecognized to its own command. Everything
     // works, but this error still appears. This code will bypass this error
     // so that the process continues and doesn't show the ugly error
-    const hasPageSizeError = err.message.includes('--page-size');
+    const hasPageSizeError = err.message.includes("--page-size");
 
     if (hasPageSizeError) {
       return;

@@ -1,4 +1,4 @@
-import { deploy, destroy } from "./integration/automation";
+import { deploy, destroy } from "./child-infra/automation";
 
 const isDestoryCmd = process.argv.slice(2).includes("--destroy");
 

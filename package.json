@@ -1,5 +1,9 @@
 {
     "name": "disappearing-policies",
+    "scripts": {
+        "automation": "ts-node scripts.ts",
+        "automation:destroy": "ts-node scripts.ts --destroy"
+    },
     "devDependencies": {
         "@types/node": "^10.17.54"
     },
