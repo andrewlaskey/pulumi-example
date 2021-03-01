@@ -1,14 +1,14 @@
-import { deploy, destroy } from './integration/automation';
+import { deploy, destroy } from "./integration/automation";
 
-const isDestoryCmd = process.argv.slice(2).includes('--destroy');
+const isDestoryCmd = process.argv.slice(2).includes("--destroy");
 
 function harnessStandup() {
-  console.info('******** INTEGRATION TEST INFRA SETUP ********');
+  console.info("******** CHILD INFRA SETUP ********");
   return deploy();
 }
 
 function harnessTeardown() {
-  console.info('******** INTEGRATION TEST INFRA TEARDOWN ********');
+  console.info("******** CHILD INFRA TEARDOWN ********");
   return destroy();
 }
 
